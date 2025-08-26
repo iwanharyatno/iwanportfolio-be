@@ -10,8 +10,8 @@ function generateEmailHtml({ from, subject, message }) {
 <p style="margin-top: 0">Contact Notification</p>
 </header>
 <main style="padding: 1.5rem; line-height: 1.5rem">
-<p>Halo, Iwan!</p>
-<p>Ada pesan nih, buat kamu! dia kontak lewat halaman portfolio kamu, coba cek deh, detailnya dibawah ini yap.</p>
+<p>Hello, Iwan!</p>
+<p>There's a message for you! they contacted you via the contact form in your portfolio website, check it out! details are as follows.</p>
 <table style="width: 100%; border: 1px solid gray; border-collapse: collapse;">
 	<tr>
     	<th style="border: 1px solid gray; padding: 0.5rem; text-align: left;">From</th>
@@ -27,9 +27,9 @@ function generateEmailHtml({ from, subject, message }) {
     </tr>
 </table>
 
-<p>Tetap semangat ya, Iwan! sukses selalu!</p>
+<p>Keep it up the good work, Iwan!</p>
 
-<p>Salam hangat<br>
+<p>Warm regards<br>
 <em>Your kindest self</em></p>
 </main>
 <footer style="padding: 1rem; background: linear-gradient(90deg, #D94B8B, #8B6CC6); color: white; text-align: center">
@@ -43,7 +43,7 @@ module.exports = async function sendFeedback({ from, subject, message }) {
     await transporter.sendMail({
         from: from,
         to: process.env.EMAIL_TO,
-        subject: 'NOTIFIKASI FORM KONTAK | Iwan Portfolio',
+        subject: 'CONTACT NOTIFICATION | Iwan Portfolio',
         html: generateEmailHtml({ from, subject, message })
     });
 }
