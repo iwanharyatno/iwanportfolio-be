@@ -2,10 +2,12 @@ require('dotenv').config();
 
 const express = require('express');
 const app = express();
+const cors = require('cors');
 
 const contactRoute = require('./routes/contact');
 
 app.use(express.json());
+app.use(cors());
 
 app.use('/api/feedback', contactRoute);
 
