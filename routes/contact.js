@@ -3,10 +3,10 @@ const sendFeedback = require('../utils/feedback-mail');
 const router = express.Router();
 
 router.post('/', async (req, res) => {
-    const { from, subject, message } = req.body;
+    const { name, email, message } = req.body;
 
     try {
-        await sendFeedback({ from, subject, message });
+        await sendFeedback({ name, email, message });
 
         res.send({
             success: true,

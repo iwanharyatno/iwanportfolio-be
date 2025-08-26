@@ -2,7 +2,7 @@ require('dotenv').config();
 
 const transporter = require('../config/mail');
 
-function generateEmailHtml({ from, subject, message }) {
+function generateEmailHtml({ name, email, message }) {
     return `
 <div style="font-family: arial; width: 100%">
 <header style="padding: 1.5rem; background: linear-gradient(90deg, #D94B8B, #8B6CC6); color: white; text-align: center">
@@ -14,12 +14,12 @@ function generateEmailHtml({ from, subject, message }) {
 <p>There's a message for you! they contacted you via the contact form in your portfolio website, check it out! details are as follows.</p>
 <table style="width: 100%; border: 1px solid gray; border-collapse: collapse;">
 	<tr>
-    	<th style="border: 1px solid gray; padding: 0.5rem; text-align: left;">From</th>
-        <td style="border: 1px solid gray;; padding: 0.5rem">${from}</td>
+    	<th style="border: 1px solid gray; padding: 0.5rem; text-align: left;">Name</th>
+        <td style="border: 1px solid gray;; padding: 0.5rem">${name}</td>
     </tr>
 	<tr>
-    	<th style="border: 1px solid gray; padding: 0.5rem; text-align: left;">Subject</th>
-        <td style="border: 1px solid gray; padding: 0.5rem">${subject}</td>
+    	<th style="border: 1px solid gray; padding: 0.5rem; text-align: left;">Email</th>
+        <td style="border: 1px solid gray; padding: 0.5rem">${email}</td>
     </tr>
 	<tr>
     	<th style="border: 1px solid gray; padding: 0.5rem; text-align: left;">Message</th>
@@ -39,11 +39,11 @@ function generateEmailHtml({ from, subject, message }) {
 `;
 }
 
-module.exports = async function sendFeedback({ from, subject, message }) {
+module.exports = async function sendFeedback({ name, email, message }) {
     await transporter.sendMail({
-        from: from,
+        from: `"${name} <${email}>"`,
         to: process.env.EMAIL_TO,
         subject: 'CONTACT NOTIFICATION | Iwan Portfolio',
-        html: generateEmailHtml({ from, subject, message })
+        html: generateEmailHtml({ name, email, message })
     });
 }
