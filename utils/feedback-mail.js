@@ -41,7 +41,7 @@ function generateEmailHtml({ name, email, message }) {
 
 module.exports = async function sendFeedback({ name, email, message }) {
     await transporter.sendMail({
-        from: `"${name} <${email}>"`,
+        from: `"${name}" <${email}>`,
         to: process.env.EMAIL_TO,
         subject: 'CONTACT NOTIFICATION | Iwan Portfolio',
         html: generateEmailHtml({ name, email, message })
